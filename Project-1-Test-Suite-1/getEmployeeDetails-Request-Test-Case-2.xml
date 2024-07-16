@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testCase xmlns:con="http://eviware.com/soapui/config" id="adf719d0-8943-413d-aefa-75eec25a39fa" discardOkResults="false" failOnError="false" failTestCaseOnErrors="true" keepSession="false" name="getEmployeeDetails Request Test Case 2" searchProperties="true" timeout="0">
+  <con:settings id="154ceb5d-473b-4660-8813-e0da43a3db18">
+    <con:setting id="adf719d0-8943-413d-aefa-75eec25a39fafileName">getEmployeeDetails-Request-Test-Case-2</con:setting>
+  </con:settings>
+  <con:testStep type="request" id="ecc3db79-24ec-4fcb-9e07-36336630588e" name="getEmployeeDetails getEmployeeDetails Request">
+    <con:settings/>
+    <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="con:RequestStep">
+      <con:interface>EmployeeManagementServiceSoap12Binding</con:interface>
+      <con:operation>getEmployeeDetails</con:operation>
+      <con:request name="getEmployeeDetails getEmployeeDetails Request" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="d29a35d8-5fd6-4c02-86af-abc2aa6daae0">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+        </con:settings>
+        <con:encoding>UTF-8</con:encoding>
+        <con:endpoint>http://216.10.245.166:8080/axis2/services/EmployeeManagementService.EmployeeManagementServiceHttpSoap12Endpoint/</con:endpoint>
+        <con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:typ="http://sample.com/reservation/guest/types">
+   <soap:Header/>
+   <soap:Body>
+      <typ:getEmployeeDetails>
+         <!--Optional:-->
+         <typ:employeeName>Lysandra Sweeney</typ:employeeName>
+      </typ:getEmployeeDetails>
+   </soap:Body>
+</soap:Envelope>]]></con:request>
+        <con:assertion type="Response SLA Assertion" id="47487095-7587-466e-8e99-2b3f6d1b4686" name="Response SLA">
+          <con:configuration>
+            <SLA>500</SLA>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="Not SOAP Fault Assertion" id="20815da4-add6-46e5-b46e-42f46e87d5de" name="SOAP Fault"/>
+        <con:assertion type="SOAP Response" id="92e133ae-492f-4a8f-84da-fe57c4f77b51" name="SOAP Response"/>
+        <con:assertion type="DataAndMetadataAssertion" id="adf738fe-3d13-4a63-a9e4-58823e01bd1e" name="Smart Assertion">
+          <con:configuration xsi:type="con:DataAndMetadataAssertion">
+            <con:mode>Received Data</con:mode>
+            <con:elements>
+              <con:path>declare namespace ns1='http://www.w3.org/2003/05/soap-envelope';
+//ns1:Value[1]</con:path>
+              <con:element>soapenv:Value</con:element>
+              <con:operatorId>1</con:operatorId>
+              <con:enabled>true</con:enabled>
+              <con:expectedValue>soapenv:Receiver</con:expectedValue>
+              <con:caseSensitive>true</con:caseSensitive>
+              <con:numberType>false</con:numberType>
+            </con:elements>
+            <con:elements>
+              <con:path>declare namespace ns1='http://www.w3.org/2003/05/soap-envelope';
+//ns1:Text[1]</con:path>
+              <con:element>soapenv:Text</con:element>
+              <con:operatorId>1</con:operatorId>
+              <con:enabled>true</con:enabled>
+              <con:expectedValue>Employee does not exist</con:expectedValue>
+              <con:caseSensitive>true</con:caseSensitive>
+              <con:numberType>false</con:numberType>
+            </con:elements>
+            <con:elements>
+              <con:path>declare namespace ns2='http://www.w3.org/2003/05/soap-envelope';
+declare namespace ns1='http://www.w3.org/XML/1998/namespace';
+//ns2:Text[1]/@ns1:lang</con:path>
+              <con:element>@xml:lang</con:element>
+              <con:operatorId>1</con:operatorId>
+              <con:enabled>true</con:enabled>
+              <con:expectedValue>en-US</con:expectedValue>
+              <con:caseSensitive>true</con:caseSensitive>
+              <con:numberType>false</con:numberType>
+            </con:elements>
+            <con:elements>
+              <con:path>declare namespace ns1='http://www.w3.org/2001/XMLSchema-instance';
+declare namespace ns2='http://sample.com/reservation/guest/types';
+//ns2:EmployeeManagementServiceEmployeeManagementException[1]/ns2:EmployeeManagementException[1]/@ns1:type</con:path>
+              <con:element>@xsi:type</con:element>
+              <con:operatorId>1</con:operatorId>
+              <con:enabled>true</con:enabled>
+              <con:expectedValue>ax21:EmployeeManagementException</con:expectedValue>
+              <con:caseSensitive>true</con:caseSensitive>
+              <con:numberType>false</con:numberType>
+            </con:elements>
+            <con:elements>
+              <con:path>declare namespace ns1='http://exception.reservation.sample.com/xsd';
+declare namespace ns2='http://sample.com/reservation/guest/types';
+//ns2:EmployeeManagementServiceEmployeeManagementException[1]/ns2:EmployeeManagementException[1]/ns1:message[1]</con:path>
+              <con:element>ax21:message</con:element>
+              <con:operatorId>1</con:operatorId>
+              <con:enabled>true</con:enabled>
+              <con:expectedValue>Employee does not exist</con:expectedValue>
+              <con:caseSensitive>true</con:caseSensitive>
+              <con:numberType>false</con:numberType>
+            </con:elements>
+            <con:originalMessage><![CDATA[<soapenv:Envelope xmlns:soapenv="http://www.w3.org/2003/05/soap-envelope">
+   <soapenv:Body>
+      <soapenv:Fault>
+         <soapenv:Code>
+            <soapenv:Value>soapenv:Receiver</soapenv:Value>
+         </soapenv:Code>
+         <soapenv:Reason>
+            <soapenv:Text xml:lang="en-US">Employee does not exist</soapenv:Text>
+         </soapenv:Reason>
+         <soapenv:Detail>
+            <ns:EmployeeManagementServiceEmployeeManagementException xmlns:ns="http://sample.com/reservation/guest/types">
+               <EmployeeManagementException xsi:type="ax21:EmployeeManagementException" xmlns="http://sample.com/reservation/guest/types" xmlns:ax21="http://exception.reservation.sample.com/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                  <ax21:message>Employee does not exist</ax21:message>
+               </EmployeeManagementException>
+            </ns:EmployeeManagementServiceEmployeeManagementException>
+         </soapenv:Detail>
+      </soapenv:Fault>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:originalMessage>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:getEmployeeDetails"/>
+        <con:wsrmConfig version="1.2"/>
+      </con:request>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="groovy" name="Groovy Script" id="500760b7-308c-46dd-8421-c3e94bba123f">
+    <con:settings/>
+    <con:config>
+      <script>import com.eviware.soapui.support.XmlHolder
+import com.eviware.soapui.impl.wsdl.testcase.WsdlTestRunContext
+log.info "Hello This is my first Test in ReadyAPI"
+
+def name= testRunner.testCase.testSuite.testCases["addEmployee-addEmployee Request Test Case"].testSteps["Data Source"].getPropertyValue("name")
+
+log.info name
+
+def getReq= testRunner.testCase.testSuite.testCases["getEmployeeDetails Request Test Case 2"].testSteps["getEmployeeDetails getEmployeeDetails Request"].getPropertyValue("Request")
+def xmlAdd = new XmlHolder(getReq)
+
+xmlAdd.setNodeValue("//typ:getEmployeeDetails/typ:employeeName", name)
+
+
+def newxml= xmlAdd.getXml();
+testRunner.testCase.testSuite.testCases["getEmployeeDetails Request Test Case 2"].testSteps["getEmployeeDetails getEmployeeDetails Request"].setPropertyValue("Request",newxml)</script>
+    </con:config>
+  </con:testStep>
+  <con:properties/>
+  <con:reportParameters/>
+</con:testCase>

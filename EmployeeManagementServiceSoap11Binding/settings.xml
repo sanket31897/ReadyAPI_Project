@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:interface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con="http://eviware.com/soapui/config" xsi:type="con:WsdlInterface" id="cb6e4515-0b89-42a0-8f13-e2892afe827f" wsaVersion="NONE" name="EmployeeManagementServiceSoap11Binding" type="wsdl" bindingName="{http://sample.com/reservation/guest}EmployeeManagementServiceSoap11Binding" soapVersion="1_1" anonymous="optional" definition="http://216.10.245.166:8080/axis2/services/EmployeeManagementService?wsdl">
+  <con:settings id="5cfeddd5-0ec4-4345-9b46-c686c71526bd">
+    <con:setting id="cb6e4515-0b89-42a0-8f13-e2892afe827ffileName">EmployeeManagementServiceSoap11Binding</con:setting>
+  </con:settings>
+  <con:definitionCache/>
+  <con:endpoints>
+    <con:endpoint>http://216.10.245.166:8080/axis2/services/EmployeeManagementService.EmployeeManagementServiceHttpSoap11Endpoint/</con:endpoint>
+  </con:endpoints>
+</con:interface>

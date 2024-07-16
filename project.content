@@ -1,0 +1,10 @@
+EmployeeManagementServiceSoap12Binding\addEmployee.xml
+EmployeeManagementServiceSoap12Binding\deleteEmployee.xml
+EmployeeManagementServiceSoap12Binding\getEmployeeDetails.xml
+EmployeeManagementServiceSoap11Binding\addEmployee.xml
+EmployeeManagementServiceSoap11Binding\deleteEmployee.xml
+EmployeeManagementServiceSoap11Binding\getEmployeeDetails.xml
+Project-1-Test-Suite-1\addEmployee-addEmployee-Request-Test-Case.xml
+Project-1-Test-Suite-1\getEmployeeDetails-Request-Test-Case.xml
+Project-1-Test-Suite-1\deleteEmployee-deleteEmployee-Request-Test-Case.xml
+Project-1-Test-Suite-1\getEmployeeDetails-Request-Test-Case-2.xml

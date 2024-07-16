@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testCase xmlns:con="http://eviware.com/soapui/config" id="f2af161d-4460-491c-bf59-9b8b8b2c7eab" discardOkResults="false" failOnError="false" failTestCaseOnErrors="true" keepSession="false" name="getEmployeeDetails Request Test Case" searchProperties="true" timeout="0">
+  <con:settings id="32ef8ebe-a215-441b-b00b-d5b6aafbf8e6">
+    <con:setting id="f2af161d-4460-491c-bf59-9b8b8b2c7eabfileName">getEmployeeDetails-Request-Test-Case</con:setting>
+  </con:settings>
+  <con:testStep type="groovy" name="Groovy Script" id="c65f2cea-8d7f-4a2e-8603-5923184cd68e">
+    <con:settings/>
+    <con:config>
+      <script>import com.eviware.soapui.support.XmlHolder
+import com.eviware.soapui.impl.wsdl.testcase.WsdlTestRunContext
+log.info "Hello This is my first Test in ReadyAPI"
+
+def name= testRunner.testCase.testSuite.testCases["addEmployee-addEmployee Request Test Case"].testSteps["Data Source"].getPropertyValue("name")
+
+log.info name
+
+def getReq= testRunner.testCase.testSuite.testCases["getEmployeeDetails Request Test Case"].testSteps["getEmployeeDetails getEmployeeDetails Request"].getPropertyValue("Request")
+def xmlAdd = new XmlHolder(getReq)
+
+xmlAdd.setNodeValue("//typ:getEmployeeDetails/typ:employeeName", name)
+
+
+def newxml= xmlAdd.getXml();
+testRunner.testCase.testSuite.testCases["getEmployeeDetails Request Test Case"].testSteps["getEmployeeDetails getEmployeeDetails Request"].setPropertyValue("Request",newxml)</script>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="request" id="c20e37a8-8d84-4cd3-9aec-7e9bed5518d6" name="getEmployeeDetails getEmployeeDetails Request">
+    <con:settings/>
+    <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="con:RequestStep">
+      <con:interface>EmployeeManagementServiceSoap12Binding</con:interface>
+      <con:operation>getEmployeeDetails</con:operation>
+      <con:request name="getEmployeeDetails getEmployeeDetails Request" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="d29a35d8-5fd6-4c02-86af-abc2aa6daae0">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+        </con:settings>
+        <con:encoding>UTF-8</con:encoding>
+        <con:endpoint>http://216.10.245.166:8080/axis2/services/EmployeeManagementService.EmployeeManagementServiceHttpSoap12Endpoint/</con:endpoint>
+        <con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:typ="http://sample.com/reservation/guest/types">
+   <soap:Header/>
+   <soap:Body>
+      <typ:getEmployeeDetails>
+         <!--Optional:-->
+         <typ:employeeName>Lysandra Sweeney</typ:employeeName>
+      </typ:getEmployeeDetails>
+   </soap:Body>
+</soap:Envelope>]]></con:request>
+        <con:assertion type="SOAP Response" id="84decbbe-e87b-4ebd-bf4a-fa9b5c1c1228" name="SOAP Response"/>
+        <con:assertion type="Valid HTTP Status Codes" id="9deb29f4-626e-4a26-99b5-cb1a5f7e9e47" name="Valid HTTP Status Codes">
+          <con:settings/>
+          <con:configuration>
+            <codes>200</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="Schema Compliance" id="c6035b3c-8f64-4396-b98f-c735e0cef902" name="Schema Compliance">
+          <con:configuration/>
+        </con:assertion>
+        <con:assertion type="Response SLA Assertion" id="47487095-7587-466e-8e99-2b3f6d1b4686" name="Response SLA">
+          <con:configuration>
+            <SLA>500</SLA>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="SOAP Fault Assertion" id="f490433d-2478-4d08-a344-cf3352f91be6" name="Not SOAP Fault"/>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:getEmployeeDetails"/>
+        <con:wsrmConfig version="1.2"/>
+      </con:request>
+    </con:config>
+  </con:testStep>
+  <con:properties/>
+  <con:reportParameters/>
+</con:testCase>

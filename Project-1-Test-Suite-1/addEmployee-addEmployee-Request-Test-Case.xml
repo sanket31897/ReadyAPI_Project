@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testCase xmlns:con="http://eviware.com/soapui/config" id="dbbfc9f7-f91b-4e35-a2cb-9063727c61c9" discardOkResults="false" failOnError="false" failTestCaseOnErrors="true" keepSession="false" name="addEmployee-addEmployee Request Test Case" searchProperties="true" timeout="0">
+  <con:settings id="549b8ddd-384e-413e-a3d7-0e1e586069f2">
+    <con:setting id="dbbfc9f7-f91b-4e35-a2cb-9063727c61c9fileName">addEmployee-addEmployee-Request-Test-Case</con:setting>
+  </con:settings>
+  <con:testStep type="datasource" name="Data Source" id="ef8095e2-c7df-4c62-9b2b-b528737a50ac">
+    <con:settings/>
+    <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="con:DataSourceStep">
+      <con:dataSource type="Data Generator">
+        <con:configuration>
+          <generatedDataCount>1</generatedDataCount>
+          <generatorsTotalNumber>4</generatorsTotalNumber>
+          <lastSelectedProperty>0</lastSelectedProperty>
+          <GeneratorType0>NAME</GeneratorType0>
+          <PropertyName0>name</PropertyName0>
+          <repetitionCountname>0</repetitionCountname>
+          <repeatValuesname>false</repeatValuesname>
+          <NameTypeName0>Full</NameTypeName0>
+          <NameGenderName0>Any</NameGenderName0>
+          <GeneratorType1>INT</GeneratorType1>
+          <PropertyName1>id</PropertyName1>
+          <repetitionCountid>0</repetitionCountid>
+          <repeatValuesid>false</repeatValuesid>
+          <IntegerDataGeneratorMinValueid>32355</IntegerDataGeneratorMinValueid>
+          <IntegerDataGeneratorMaxValueid>49885618</IntegerDataGeneratorMaxValueid>
+          <IntegerDataGeneratorStepValueid>0</IntegerDataGeneratorStepValueid>
+          <IntegerDataGeneratorConsequentValuesid>false</IntegerDataGeneratorConsequentValuesid>
+          <GeneratorType2>NAME</GeneratorType2>
+          <PropertyName2>department</PropertyName2>
+          <repetitionCountdepartment>0</repetitionCountdepartment>
+          <repeatValuesdepartment>false</repeatValuesdepartment>
+          <NameTypeName2>LastName</NameTypeName2>
+          <NameGenderName2>Any</NameGenderName2>
+          <GeneratorType3>INT</GeneratorType3>
+          <PropertyName3>age</PropertyName3>
+          <repetitionCountage>0</repetitionCountage>
+          <repeatValuesage>false</repeatValuesage>
+          <IntegerDataGeneratorMinValueage>18</IntegerDataGeneratorMinValueage>
+          <IntegerDataGeneratorMaxValueage>58</IntegerDataGeneratorMaxValueage>
+          <IntegerDataGeneratorStepValueage>1</IntegerDataGeneratorStepValueage>
+          <IntegerDataGeneratorConsequentValuesage>false</IntegerDataGeneratorConsequentValuesage>
+          <escapeSpaceSequence/>
+        </con:configuration>
+      </con:dataSource>
+      <con:shared>false</con:shared>
+      <con:restartShared>false</con:restartShared>
+      <con:property>name</con:property>
+      <con:property>id</con:property>
+      <con:property>department</con:property>
+      <con:property>age</con:property>
+      <con:completeLastOperation>true</con:completeLastOperation>
+      <con:restartOnRun>true</con:restartOnRun>
+      <con:stopDatasourceExhausted>false</con:stopDatasourceExhausted>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="datasourceloop" name="Data Source Loop" id="b0a3913c-eddd-4a65-bb7b-91cf54e14fc8">
+    <con:settings/>
+    <con:config>
+      <dataSourceStep>Data Source</dataSourceStep>
+      <targetStep>addEmployee addEmployee Request</targetStep>
+      <discardResults>true</discardResults>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="request" id="d51f33d1-38e4-4e3f-bed4-3d64fba97652" name="addEmployee addEmployee Request">
+    <con:settings/>
+    <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="con:RequestStep">
+      <con:interface>EmployeeManagementServiceSoap12Binding</con:interface>
+      <con:operation>addEmployee</con:operation>
+      <con:request name="addEmployee addEmployee Request" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="323ba4a1-c255-4be0-98e8-43fbff1c2da7">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+        </con:settings>
+        <con:encoding>UTF-8</con:encoding>
+        <con:endpoint>http://216.10.245.166:8080/axis2/services/EmployeeManagementService.EmployeeManagementServiceHttpSoap12Endpoint/</con:endpoint>
+        <con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:typ="http://sample.com/reservation/guest/types">
+   <soap:Header/>
+   <soap:Body>
+      <typ:addEmployee>
+         <!--Optional:-->
+         <typ:name>${Data Source#name}</typ:name>
+         <!--Optional:-->
+         <typ:id>${Data Source#id}</typ:id>
+         <!--Optional:-->
+         <typ:Department>${Data Source#Department}</typ:Department>
+         <!--Optional:-->
+         <typ:age>${Data Source#age}</typ:age>
+      </typ:addEmployee>
+   </soap:Body>
+</soap:Envelope>]]></con:request>
+        <con:assertion type="SOAP Response" id="0896ab95-adad-4ddb-ac15-873236dc8b3c" name="SOAP Response"/>
+        <con:assertion type="Valid HTTP Status Codes" id="076cb8a7-67ba-430b-8750-645f0996b7f0" name="Valid HTTP Status Codes">
+          <con:settings/>
+          <con:configuration>
+            <codes>200</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="Schema Compliance" id="ff9a4b38-71a2-46b1-b002-a3c9ec6645f5" name="Schema Compliance">
+          <con:configuration/>
+        </con:assertion>
+        <con:assertion type="Response SLA Assertion" id="e0ad454a-58d9-48be-940c-88a8859503f1" name="Response SLA">
+          <con:configuration>
+            <SLA>1000</SLA>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="SOAP Fault Assertion" id="deb93f3e-65ae-4cc8-9bb7-dcf8bbf9204b" name="Not SOAP Fault"/>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:addEmployee"/>
+        <con:wsrmConfig version="1.2"/>
+      </con:request>
+    </con:config>
+  </con:testStep>
+  <con:properties/>
+  <con:reportParameters/>
+  <con:breakPoints>
+    <con:testStepId>ef8095e2-c7df-4c62-9b2b-b528737a50ac</con:testStepId>
+    <con:status>NONE</con:status>
+    <con:properties/>
+  </con:breakPoints>
+  <con:breakPoints>
+    <con:testStepId>d51f33d1-38e4-4e3f-bed4-3d64fba97652</con:testStepId>
+    <con:status>NONE</con:status>
+    <con:properties/>
+  </con:breakPoints>
+  <con:breakPoints>
+    <con:testStepId>b0a3913c-eddd-4a65-bb7b-91cf54e14fc8</con:testStepId>
+    <con:status>NONE</con:status>
+    <con:properties/>
+  </con:breakPoints>
+</con:testCase>

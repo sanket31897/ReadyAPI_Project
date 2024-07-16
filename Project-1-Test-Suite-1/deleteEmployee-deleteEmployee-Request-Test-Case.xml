@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testCase xmlns:con="http://eviware.com/soapui/config" id="8a6c2e8c-558b-4e97-bc70-e15dde531703" discardOkResults="false" failOnError="false" failTestCaseOnErrors="true" keepSession="false" name="deleteEmployee-deleteEmployee Request Test Case" searchProperties="true" timeout="0">
+  <con:settings id="e45c735a-cdfe-446f-b08e-e900586729b9">
+    <con:setting id="8a6c2e8c-558b-4e97-bc70-e15dde531703fileName">deleteEmployee-deleteEmployee-Request-Test-Case</con:setting>
+  </con:settings>
+  <con:testStep type="groovy" name="Groovy Script" id="dd1fd61b-37a2-492a-851f-891b3185920c">
+    <con:settings/>
+    <con:config>
+      <script>import com.eviware.soapui.support.XmlHolder
+import com.eviware.soapui.impl.wsdl.testcase.WsdlTestRunContext
+log.info "Hello This is my first Test in ReadyAPI"
+
+def name= testRunner.testCase.testSuite.testCases["addEmployee-addEmployee Request Test Case"].testSteps["Data Source"].getPropertyValue("name")
+
+
+def getReq= testRunner.testCase.testSuite.testCases["deleteEmployee-deleteEmployee Request Test Case"].testSteps["deleteEmployee deleteEmployee Request"].getPropertyValue("Request")
+def xmlAdd = new XmlHolder(getReq)
+
+xmlAdd.setNodeValue("//typ:deleteEmployee/typ:employeeName", name)
+
+
+def newxml= xmlAdd.getXml();
+testRunner.testCase.testSuite.testCases["deleteEmployee-deleteEmployee Request Test Case"].testSteps["deleteEmployee deleteEmployee Request"].setPropertyValue("Request",newxml)</script>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="request" id="68d143d0-88c4-4bbb-bc6d-7ff1ae5576fe" name="deleteEmployee deleteEmployee Request">
+    <con:settings/>
+    <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="con:RequestStep">
+      <con:interface>EmployeeManagementServiceSoap12Binding</con:interface>
+      <con:operation>deleteEmployee</con:operation>
+      <con:request name="deleteEmployee deleteEmployee Request" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="ce730c79-20d5-4f33-992f-72ab7c439f2e">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+        </con:settings>
+        <con:encoding>UTF-8</con:encoding>
+        <con:endpoint>http://216.10.245.166:8080/axis2/services/EmployeeManagementService.EmployeeManagementServiceHttpSoap12Endpoint/</con:endpoint>
+        <con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:typ="http://sample.com/reservation/guest/types">
+   <soap:Header/>
+   <soap:Body>
+      <typ:deleteEmployee>
+         <!--Optional:-->
+         <typ:employeeName>Lysandra Sweeney</typ:employeeName>
+      </typ:deleteEmployee>
+   </soap:Body>
+</soap:Envelope>]]></con:request>
+        <con:assertion type="Valid HTTP Status Codes" id="e1dc84a2-f372-4aba-9d64-89e6d8adfa5c" name="Valid HTTP Status Codes">
+          <con:settings/>
+          <con:configuration>
+            <codes>202</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="Response SLA Assertion" id="a2f64dac-f36a-4c58-9472-70be1c8298c2" name="Response SLA">
+          <con:configuration>
+            <SLA>500</SLA>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:deleteEmployee"/>
+        <con:wsrmConfig version="1.2"/>
+      </con:request>
+    </con:config>
+  </con:testStep>
+  <con:properties/>
+  <con:reportParameters/>
+</con:testCase>
